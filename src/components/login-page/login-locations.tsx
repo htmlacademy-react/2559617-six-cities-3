@@ -1,4 +1,4 @@
-export default function LoginLocations() {
+export function LoginLocations() {
   return (
     <section className="locations locations--login locations--current">
       <div className="locations__item">

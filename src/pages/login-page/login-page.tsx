@@ -1,8 +1,8 @@
-import Header from "../../components/header/header";
-import LoginForm from "../../components/login-page/login-form";
-import LoginLocations from "../../components/login-page/login-locations";
+import {Header} from "../../components/header/header";
+import {LoginForm} from "../../components/login-page/login-form";
+import {LoginLocations} from "../../components/login-page/login-locations";
 
-export default function LoginPage() {
+export function LoginPage() {
     return (
         <div className="page page--gray page--login">
           <Header showNavigation={false}/>

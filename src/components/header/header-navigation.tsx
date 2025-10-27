@@ -3,7 +3,7 @@ type HeaderNavigationProps = {
     userFavouriteCount?: number;
 }
 
-export default function HeaderNavigation({userEmail,userFavouriteCount }: HeaderNavigationProps): JSX.Element{
+export function HeaderNavigation({userEmail,userFavouriteCount }: HeaderNavigationProps): JSX.Element{
     return(
         <nav className="header__nav">
         <ul className="header__nav-list">

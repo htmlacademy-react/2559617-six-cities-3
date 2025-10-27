@@ -1,5 +1,5 @@
 
-type PlaceCardProps = {
+type Props = {
   isPremium?: boolean;
   imageSrc: string;
   pricePerNight: number;
@@ -9,7 +9,7 @@ type PlaceCardProps = {
   type: string;
 }
 
-export default function PlaceCard ({isPremium, imageSrc, pricePerNight, rating, title, type }:PlaceCardProps): JSX.Element{
+export function PlaceCard ({isPremium, imageSrc, pricePerNight, rating, title, type }:Props): JSX.Element{
     return(
         <article className="cities__card place-card">
         
