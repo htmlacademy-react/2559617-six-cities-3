@@ -1,4 +1,4 @@
-export default function Footer (){
+export function Footer (){
     return (
         <footer className="footer container">
         <a className="footer__logo-link" href="main.html">

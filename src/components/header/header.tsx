@@ -1,10 +1,10 @@
-import HeaderNavigation from "./header-navigation";
+import {HeaderNavigation} from "./header-navigation";
 
-type HeaderProps = {
+type Props = {
   showNavigation?: boolean;
 }
 
-export default function Header({ showNavigation = true }: HeaderProps): JSX.Element {
+export function Header({ showNavigation = true }: Props): JSX.Element {
   return (
     <header className="header">
       <div className="container">

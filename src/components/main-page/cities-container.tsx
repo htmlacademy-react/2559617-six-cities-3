@@ -1,7 +1,7 @@
-import MapSection from "./map-section";
-import PlacesList from "./places-list";
+import {MapSection} from "./map-section";
+import {PlacesList} from "./places-list";
 
-export default function CitiesContainer() {
+export function CitiesContainer() {
   return (
     <div className="cities">
       <div className="cities__places-container container">

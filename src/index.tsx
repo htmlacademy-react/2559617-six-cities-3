@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import FavoritesPage from './pages/favorites-page/favorites-page';
-// import MainPage from './pages/main-page/main-page';
+import MainPage from './pages/main-page/main-page';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -9,6 +8,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    < FavoritesPage />
+    < MainPage />
   </React.StrictMode>
 );
