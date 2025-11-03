@@ -4,7 +4,7 @@ import { OfferGallery } from '../../components/offer-page/offer-gallery/offer-ga
 import { OfferMap } from '../../components/offer-page/offer-map';
 import { OfferInfo } from '../../components/offer-page/offer-info/offer-info';
 
-export default function OfferPage() {
+export function OfferPage() {
   return (
     <div className='page'>
       <Header />
