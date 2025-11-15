@@ -1,19 +1,25 @@
+// OfferPage.tsx
 import { Header } from '../../components/header/header';
-import { NearPlaces } from '../../components/offer-page/near-places/near-places';
 import { OfferGallery } from '../../components/offer-page/offer-gallery/offer-gallery';
-import { OfferMap } from '../../components/offer-page/offer-map';
 import { OfferInfo } from '../../components/offer-page/offer-info/offer-info';
+import { TOffer } from '../../types/offers';
 
-export function OfferPage() {
+type Props = {
+  offers: TOffer[];
+};
+
+export function OfferPage({ offers }: Props): JSX.Element {
+  const offer = offers[0];
+
   return (
     <div className='page'>
       <Header />
       <main className='page__main page__main--offer'>
         <section className='offer'>
           <OfferGallery />
-          <OfferInfo />
-          <OfferMap />
-          <NearPlaces />
+          <OfferInfo offer={offer} />
+          {/* <OfferMap />
+          <NearPlaces /> */}
         </section>
       </main>
     </div>

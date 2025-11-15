@@ -1,11 +1,13 @@
+import { TOffer } from '../../../types/offers';
+
 interface Props {
-  price: number;
+  offer: TOffer;
 }
 
-export function OfferPrice({ price }: Props) {
+export function OfferPrice({ offer }: Props) {
   return (
     <div className='offer__price'>
-      <b className='offer__price-value'>&euro;{price}</b>
+      <b className='offer__price-value'>&euro;{offer.price}</b>
       <span className='offer__price-text'>&nbsp;night</span>
     </div>
   );

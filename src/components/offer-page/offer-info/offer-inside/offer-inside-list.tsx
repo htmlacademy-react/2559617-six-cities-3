@@ -1,20 +1,17 @@
-import { OfferInsideItem } from './offer-inside-item';
+import { TOffer } from '../../../../types/offers';
 
-export function OfferInsideList() {
+interface Props {
+  offer: TOffer;
+}
+
+export function OfferInsideList({ offer }: Props) {
   return (
     <div className='offer__inside'>
-      <h2 className='offer__inside-title'>What&apos;s inside</h2>
+      <h2 className='offer__inside-title'>What's inside</h2>
       <ul className='offer__inside-list'>
-        <OfferInsideItem name='Wi-Fi' />
-        <OfferInsideItem name='Washing machine' />
-        <OfferInsideItem name='Towels' />
-        <OfferInsideItem name='Heating' />
-        <OfferInsideItem name='Coffee machine' />
-        <OfferInsideItem name='Baby seat' />
-        <OfferInsideItem name='Kitchen' />
-        <OfferInsideItem name='Dishwasher' />
-        <OfferInsideItem name='Cabel TV' />
-        <OfferInsideItem name='Fridge' />
+        {offer.goods.map((good) => (
+          <li key={good} className='offer__inside-item'>{good}</li>
+        ))}
       </ul>
     </div>
   );

@@ -3,9 +3,9 @@ import { TOffer } from '../types/offers';
 export const offers: TOffer[] = [
   {
     id: '1',
-    title: 'Beautiful & luxurious studio at great location',
+    title: 'Предложение 1',
     type: 'apartment',
-    price: 120,
+    price: 10,
     city: {
       name: 'Amsterdam',
       location: {
@@ -36,9 +36,9 @@ export const offers: TOffer[] = [
   },
   {
     id: '2',
-    title: 'Wood and stone place',
+    title: 'Предложение 2',
     type: 'room',
-    price: 80,
+    price: 20,
     city: {
       name: 'Cologne',
       location: {
