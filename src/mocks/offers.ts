@@ -1,66 +1,70 @@
-import { TOffer } from "../types/offers";
+import { TOffer } from '../types/offers';
 
-const IMG_URL = '/img';
-const CITIES: string[] = ['Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dussseldorf'];
-const CITIES_DESCRIPTION: string[] = [
-    'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
-    'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.'
-];
-
-export const LOCATIONS = CITIES.map((item, index) => ({
-    id: index + 1,
-    title: item,
-    src: '#'
-}));
-
-const createRandomOffer = (index: number): TOffer => ({
-    id: String(index),
+export const offers: TOffer[] = [
+  {
+    id: '1',
     title: 'Beautiful & luxurious studio at great location',
     type: 'apartment',
-    price: getRandomInteger(100, 1000),
+    price: 120,
     city: {
-        name: getRandomElement(CITIES),
-        location: {
-            latitude: 48.24570414430183,
-            longitude: 16.35604383833018,
-            zoom: 5 
-        } 
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.38333,
+        longitude: 4.9,
+        zoom: 10,
+      },
     },
     location: {
-        latitude: 48.24570414430183,
-        longitude: 16.35604383833018,
-        zoom: 5
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 8,
     },
-    isFavourite: Boolean(getRandomInteger(0, 1)),
-    isPremium: Boolean(getRandomInteger(0, 1)),
-    rating: getRandomInteger(1, 5),
-    description: getRandomArrayElement(CITIES_DESCRIPTION),
-    bedrooms: getRandomInteger(1, 4),
-    goods: ['Heating'],
+    isFavourite: false,
+    isPremium: true,
+    rating: 4.8,
+    description:
+      'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    bedrooms: 3,
+    goods: ['Heating', 'Kitchen', 'Cable TV', 'Washing machine'],
     host: {
-        name: 'Oliver Conner',
-        avatarUrl: `${IMG_URL}/${getRandomInteger(0, 1) ? 'avatar-max.jpg' : 'avatar-angelina.jpg'}`,
-        isPro: Boolean(getRandomInteger(0, 1))
+      name: 'Angelina',
+      avatarUrl: '/img/avatar-angelina.jpg',
+      isPro: true,
     },
-    images: [
-        `${IMG_URL}/apartmnet-01.jpg`,
-        `${IMG_URL}/apartmnet-02.jpg`,
-        `${IMG_URL}/apartmnet-03.jpg`,
-    ],
-    maxAdults: getRandomInteger(1, 5),
-});
-
-export const generateOffers = (offersNumber: number): TOffer[] => (
-    Array.from({ length: offersNumber }, (_, index) => createRandomOffer(index))
-);
-
-
-const getRandomInteger = (min: number, max: number): number => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
-const getRandomElement = <T>(arr: T[]): T => {
-    return arr[getRandomInteger(0, arr.length - 1)];
-};
-
-const getRandomArrayElement = getRandomElement;
+    images: ['/img/apartment-01.jpg', '/img/apartment-02.jpg', '/img/apartment-03.jpg'],
+    maxAdults: 4,
+  },
+  {
+    id: '2',
+    title: 'Wood and stone place',
+    type: 'room',
+    price: 80,
+    city: {
+      name: 'Cologne',
+      location: {
+        latitude: 50.938361,
+        longitude: 6.959974,
+        zoom: 10,
+      },
+    },
+    location: {
+      latitude: 50.938361,
+      longitude: 6.959974,
+      zoom: 8,
+    },
+    isFavourite: true,
+    isPremium: false,
+    rating: 4.2,
+    description:
+      'Stylish room with a view on the river and the city center.',
+    bedrooms: 1,
+    goods: ['Breakfast', 'Air conditioning', 'Mini bar'],
+    host: {
+      name: 'Max',
+      avatarUrl: '/img/avatar-max.jpg',
+      isPro: false,
+    },
+    images: ['/img/apartment-02.jpg', '/img/apartment-03.jpg'],
+    maxAdults: 2,
+  },
+];

@@ -1,23 +1,28 @@
 import { PlaceCard } from './place-card';
 import { PlacesSorting } from './places-sorting';
+import { TOffer } from '../../types/offers';
 
-type PlacesListProps = {
-  placesCount: number;
+type Props = {
   cityName: string;
+  offers: TOffer[];
 };
 
-export function PlacesList({ placesCount, cityName }: PlacesListProps): JSX.Element {
+export function PlacesList({ cityName, offers }: Props): JSX.Element {
+  const placesCount = offers.length;
+
   return (
     <section className='cities__places places'>
       <h2 className='visually-hidden'>Places</h2>
-      <b className='places__found'>{placesCount} places to stay in {cityName}</b>
+      <b className='places__found'>
+        {placesCount} place to stay in {cityName}
+      </b>
+
       <PlacesSorting />
+
       <div className='cities__places-list places__list tabs__content'>
-        <PlaceCard isPremium imageSrc='img/apartment-01.jpg' pricePerNight={120} rating={80} title='Beautiful &amp; luxurious apartment at great location' type='Apartment' />
-        <PlaceCard imageSrc='img/room.jpg' pricePerNight={80} rating={80} title='Wood and stone place' type='Room' />
-        <PlaceCard imageSrc='img/apartment-02.jpg' pricePerNight={132} rating={80} title='Canal View Prinsengracht' type='Apartment' />
-        <PlaceCard isPremium imageSrc='img/apartment-03.jpg' pricePerNight={180} rating={100} title='Nice, cozy, warm big bed apartment' type='Apartment' />
-        <PlaceCard imageSrc='img/room.jpg' pricePerNight={80} rating={80} title='Wood and stone place' type='Room' />
+        {offers.map((offer) => (
+          <PlaceCard key={offer.id} offer={offer} />
+        ))}
       </div>
     </section>
   );
