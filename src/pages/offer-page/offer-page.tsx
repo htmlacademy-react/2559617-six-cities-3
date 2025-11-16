@@ -1,4 +1,4 @@
-// OfferPage.tsx
+import { useParams } from 'react-router-dom';
 import { Header } from '../../components/header/header';
 import { OfferGallery } from '../../components/offer-page/offer-gallery/offer-gallery';
 import { OfferInfo } from '../../components/offer-page/offer-info/offer-info';
@@ -9,7 +9,12 @@ type Props = {
 };
 
 export function OfferPage({ offers }: Props): JSX.Element {
-  const offer = offers[0];
+  const { id } = useParams<{ id: string }>();
+  const offer = offers.find((o) => o.id === id);
+
+  if (!offer) {
+    return <div>Offer not found</div>;
+  }
 
   return (
     <div className='page'>

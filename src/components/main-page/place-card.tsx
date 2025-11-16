@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import { TOffer } from '../../types/offers';
 
 type PlaceCardProps = {
@@ -14,7 +16,7 @@ export function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
       )}
 
       <div className='cities__image-wrapper place-card__image-wrapper'>
-        <a href='#'>
+        <Link to={`/offer/${offer.id}`}>
           <img
             className='place-card__image'
             src={offer.images[0]}
@@ -22,7 +24,7 @@ export function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
             height='200'
             alt={offer.title}
           />
-        </a>
+        </Link>
       </div>
 
       <div className='place-card__info'>
@@ -48,7 +50,7 @@ export function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
         </div>
 
         <h2 className='place-card__name'>
-          <a href='#'>{offer.title}</a>
+          <Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className='place-card__type'>{offer.type}</p>
       </div>
