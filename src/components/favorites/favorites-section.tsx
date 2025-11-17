@@ -1,43 +1,32 @@
 import { FavoritesCityGroup } from './favorites-city-group';
+import { TOffer } from '../../types/offers';
 
-export function FavoritesSection() {
+type Props = {
+  offers: TOffer[];
+};
+
+export function FavoritesSection({ offers }: Props): JSX.Element {
+  const offersByCity = offers.reduce<Record<string, TOffer[]>>((acc, offer) => {
+    const city = offer.city.name;
+
+    if (!acc[city]) {
+      acc[city] = [];
+    }
+
+    acc[city].push(offer);
+
+    return acc;
+  }, {});
+
   return (
     <ul className='favorites__list'>
-      <FavoritesCityGroup
-        cityName='Amsterdam'
-        places={[
-          {
-            isPremium: true,
-            imageSrc: 'img/apartment-03.jpg',
-            pricePerNight: 180,
-            rating: 100,
-            title: 'Nice, cozy, warm big bed apartment',
-            type: 'Apartment',
-          },
-          {
-            isPremium: false,
-            imageSrc: 'img/room.jpg',
-            pricePerNight: 80,
-            rating: 80,
-            title: 'Wood and stone place',
-            type: 'Room',
-          },
-        ]}
-      />
-
-      <FavoritesCityGroup
-        cityName='Cologne'
-        places={[
-          {
-            isPremium: false,
-            imageSrc: 'img/apartment-small-04.jpg',
-            pricePerNight: 180,
-            rating: 100,
-            title: 'White castle',
-            type: 'Apartment',
-          },
-        ]}
-      />
+      {Object.entries(offersByCity).map(([cityName, cityOffers]) => (
+        <FavoritesCityGroup
+          key={cityName}
+          cityName={cityName}
+          offers={cityOffers}
+        />
+      ))}
     </ul>
   );
 }

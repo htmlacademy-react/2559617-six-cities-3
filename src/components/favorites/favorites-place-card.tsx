@@ -1,18 +1,14 @@
+import { TOffer } from '../../types/offers';
+
 interface Props {
-  isPremium?: boolean;
-  imageSrc: string;
-  pricePerNight: number;
-  // isFavorite?: boolean;
-  rating: number;
-  title: string;
-  type: string;
+  offer: TOffer;
 }
 
-export function FavoritesPlaceCard({ isPremium, imageSrc, pricePerNight, rating, title, type }: Props): JSX.Element {
+export function FavoritesPlaceCard({ offer }: Props): JSX.Element {
   return (
     <article className='favorites__card place-card'>
       {/* Проверка на премиум */}
-      {isPremium && (
+      {offer.isPremium && (
         <div className='place-card__mark'>
           <span>Premium</span>
         </div>
@@ -20,17 +16,27 @@ export function FavoritesPlaceCard({ isPremium, imageSrc, pricePerNight, rating,
 
       <div className='favorites__image-wrapper place-card__image-wrapper'>
         <a href='#'>
-          <img className='place-card__image' src={imageSrc} width={150} height={110} alt='Place image' />
+          <img
+            className='place-card__image'
+            src={offer.images[0]}
+            width={150}
+            height={110}
+            alt='Place image'
+          />
         </a>
       </div>
 
       <div className='favorites__card-info place-card__info'>
         <div className='place-card__price-wrapper'>
           <div className='place-card__price'>
-            <b className='place-card__price-value'>&euro;{pricePerNight}</b>
+            <b className='place-card__price-value'>&euro;{offer.price}</b>
             <span className='place-card__price-text'>&#47;&nbsp;night</span>
           </div>
-          <button className='place-card__bookmark-button place-card__bookmark-button--active button' type='button'>
+
+          <button
+            className='place-card__bookmark-button place-card__bookmark-button--active button'
+            type='button'
+          >
             <svg className='place-card__bookmark-icon' width={18} height={19}>
               <use href='#icon-bookmark'></use>
             </svg>
@@ -40,15 +46,15 @@ export function FavoritesPlaceCard({ isPremium, imageSrc, pricePerNight, rating,
 
         <div className='place-card__rating rating'>
           <div className='place-card__stars rating__stars'>
-            <span style={{ width: `${rating}%` }}></span>
+            <span style={{ width: `${offer.rating * 20}%` }}></span>
             <span className='visually-hidden'>Rating</span>
           </div>
         </div>
 
         <h2 className='place-card__name'>
-          <a href='#'>{title}</a>
+          <a href='#'>{offer.title}</a>
         </h2>
-        <p className='place-card__type'>{type}</p>
+        <p className='place-card__type'>{offer.type}</p>
       </div>
     </article>
   );

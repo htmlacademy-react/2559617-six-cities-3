@@ -1,15 +1,17 @@
+import { TOffer } from '../../../types/offers';
+
 interface Props {
-  rating: number;
+  offer: TOffer;
 }
 
-export function OfferRating({ rating }: Props) {
+export function OfferRating({ offer }: Props) {
   return (
     <div className='offer__rating rating'>
       <div className='offer__stars rating__stars'>
-        <span style={{ width: `${rating}%` }}></span>
+        <span style={{ width: `${offer.rating * 20}%` }}></span>
         <span className='visually-hidden'>Rating</span>
       </div>
-      <span className='offer__rating-value rating__value'>4.8</span>
+      <span className='offer__rating-value rating__value'>{offer.rating}</span>
     </div>
   );
 }

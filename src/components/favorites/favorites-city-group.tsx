@@ -1,20 +1,12 @@
 import { FavoritesPlaceCard } from './favorites-place-card';
-
-interface Place {
-  isPremium?: boolean;
-  imageSrc: string;
-  pricePerNight: number;
-  rating: number;
-  title: string;
-  type: string;
-}
+import { TOffer } from '../../types/offers';
 
 interface Props {
   cityName: string;
-  places: Place[];
+  offers: TOffer[];
 }
 
-export function FavoritesCityGroup({ cityName, places }: Props): JSX.Element {
+export function FavoritesCityGroup({ cityName, offers }: Props): JSX.Element {
   return (
     <li className='favorites__locations-items'>
       <div className='favorites__locations locations locations--current'>
@@ -26,8 +18,8 @@ export function FavoritesCityGroup({ cityName, places }: Props): JSX.Element {
       </div>
 
       <div className='favorites__places'>
-        {places.map((place) => (
-          <FavoritesPlaceCard key={place.title} {...place} />
+        {offers.map((offer) => (
+          <FavoritesPlaceCard key={offer.id} offer={offer} />
         ))}
       </div>
     </li>

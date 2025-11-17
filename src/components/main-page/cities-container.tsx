@@ -1,11 +1,16 @@
 import { MapSection } from './map-section';
 import { PlacesList } from './places-list';
+import { TOffer } from '../../types/offers';
 
-export function CitiesContainer() {
+type Props = {
+  offers: TOffer[];
+};
+
+export function CitiesContainer({offers}: Props): JSX.Element {
   return (
     <div className='cities'>
       <div className='cities__places-container container'>
-        <PlacesList placesCount={312} cityName='Amsterdam' />
+        <PlacesList offers={offers} cityName='Amsterdam' />
         <MapSection />
       </div>
     </div>
