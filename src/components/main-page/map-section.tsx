@@ -1,7 +1,36 @@
-export function MapSection() {
+import { useRef, useEffect } from 'react';
+import leaflet from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import useMap from '../../hooks/useMap';
+import { TOffer } from '../../types/offers';
+
+type Props = {
+  offers: TOffer[];
+};
+
+export function MapSection({ offers }: Props) {
+  const mapRef = useRef(null);
+  const city = offers[0].city.location;
+  const map = useMap(mapRef, city);
+
+  useEffect(() => {
+    if (map) {
+      offers.forEach((offer) => {
+        leaflet
+          .marker({
+            lat: offer.location.latitude,
+            lng: offer.location.longitude,
+          })
+          .addTo(map);
+      });
+    }
+  }, [map, offers]);
+
   return (
-    <div className="cities__right-section">
-      <section className="cities__map map"></section>
-    </div>
+    <section
+      className="cities__map map"
+      ref={mapRef}
+      style={{ height: '500px' }}
+    />
   );
 }

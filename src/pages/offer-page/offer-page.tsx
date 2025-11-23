@@ -4,6 +4,7 @@ import { OfferGallery } from '../../components/offer-page/offer-gallery/offer-ga
 import { OfferInfo } from '../../components/offer-page/offer-info/offer-info';
 import { TOffer } from '../../types/offers';
 import { NotFoundPage } from '../not-found-page/not-found.page';
+import { MapSection } from '../../components/main-page/map-section';
 
 type Props = {
   offers: TOffer[];
@@ -24,8 +25,8 @@ export function OfferPage({ offers }: Props): JSX.Element {
         <section className='offer'>
           <OfferGallery />
           <OfferInfo offer={offer} />
-          {/* <OfferMap />
-          <NearPlaces /> */}
+          <MapSection offers={[offer]} />
+          {/* <NearPlaces /> */}
         </section>
       </main>
     </div>
