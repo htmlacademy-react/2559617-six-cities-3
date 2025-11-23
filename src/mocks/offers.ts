@@ -67,4 +67,37 @@ export const offers: TOffer[] = [
     images: ['/img/apartment-02.jpg', '/img/apartment-03.jpg'],
     maxAdults: 2,
   },
+  {
+    id: '2',
+    title: 'Предложение 2',
+    type: 'room',
+    price: 20,
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 50.938361,
+        longitude: 6.959974,
+        zoom: 10,
+      },
+    },
+    location: {
+      latitude: 50.938361,
+      longitude: 6.959974,
+      zoom: 8,
+    },
+    isFavourite: true,
+    isPremium: false,
+    rating: 4.2,
+    description:
+      'Stylish room with a view on the river and the city center.',
+    bedrooms: 1,
+    goods: ['Breakfast', 'Air conditioning', 'Mini bar'],
+    host: {
+      name: 'Max',
+      avatarUrl: '/img/avatar-max.jpg',
+      isPro: false,
+    },
+    images: ['/img/apartment-02.jpg', '/img/apartment-03.jpg'],
+    maxAdults: 2,
+  },
 ];
