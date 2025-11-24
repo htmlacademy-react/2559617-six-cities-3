@@ -1,16 +1,25 @@
 import { CitiesTabsItem } from './cities-tabs-item';
 
-export function CitiesTabsList() {
+type Props = {
+  selectedCity: string;
+  onCityChange: (city: string) => void;
+};
+
+export function CitiesTabsList({ selectedCity, onCityChange }: Props) {
+  const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          <CitiesTabsItem cityName='Paris' />
-          <CitiesTabsItem cityName='Cologne' />
-          <CitiesTabsItem cityName='Brussels' />
-          <CitiesTabsItem cityName='Amsterdam' />
-          <CitiesTabsItem cityName='Hamburg' />
-          <CitiesTabsItem cityName='Dusseldorf' />
+          {cities.map((city) => (
+            <CitiesTabsItem
+              key={city}
+              cityName={city}
+              isActive={selectedCity === city}
+              onCityChange={onCityChange}
+            />
+          ))}
         </ul>
       </section>
     </div>

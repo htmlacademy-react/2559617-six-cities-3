@@ -6,6 +6,7 @@ export const offers: TOffer[] = [
     title: 'Предложение 1',
     type: 'apartment',
     price: 10,
+    previewImage: '/img/apartment-01.jpg',
     city: {
       name: 'Amsterdam',
       location: {
@@ -39,6 +40,7 @@ export const offers: TOffer[] = [
     title: 'Предложение 2',
     type: 'room',
     price: 20,
+    previewImage: '/img/apartment-02.jpg',
     city: {
       name: 'Cologne',
       location: {
@@ -51,6 +53,142 @@ export const offers: TOffer[] = [
       latitude: 50.938361,
       longitude: 6.959974,
       zoom: 8,
+    },
+    isFavourite: true,
+    isPremium: false,
+    rating: 4.2,
+    description:
+      'Stylish room with a view on the river and the city center.',
+    bedrooms: 1,
+    goods: ['Breakfast', 'Air conditioning', 'Mini bar'],
+    host: {
+      name: 'Max',
+      avatarUrl: '/img/avatar-max.jpg',
+      isPro: false,
+    },
+    images: ['/img/apartment-02.jpg', '/img/apartment-03.jpg'],
+    maxAdults: 2,
+  },
+  {
+    id: '3',
+    title: 'Предложение 3',
+    type: 'room',
+    price: 20,
+    previewImage: '/img/apartment-01.jpg',
+    city: {
+      name: 'Brussels',
+      location: {
+        latitude: 50.846557,
+        longitude: 4.351697,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 50.854557,
+      longitude: 4.364697,
+      zoom: 16,
+    },
+    isFavourite: true,
+    isPremium: false,
+    rating: 4.2,
+    description:
+      'Stylish room with a view on the river and the city center.',
+    bedrooms: 1,
+    goods: ['Breakfast', 'Air conditioning', 'Mini bar'],
+    host: {
+      name: 'Max',
+      avatarUrl: '/img/avatar-max.jpg',
+      isPro: false,
+    },
+    images: ['/img/apartment-02.jpg', '/img/apartment-03.jpg'],
+    maxAdults: 2,
+  },
+  {
+    id: '4',
+    title: 'Предложение 4',
+    type: 'room',
+    price: 20,
+    previewImage: '/img/apartment-01.jpg',
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 48.868610000000004,
+      longitude: 2.342499,
+      zoom: 16,
+    },
+    isFavourite: true,
+    isPremium: false,
+    rating: 4.2,
+    description:
+      'Stylish room with a view on the river and the city center.',
+    bedrooms: 1,
+    goods: ['Breakfast', 'Air conditioning', 'Mini bar'],
+    host: {
+      name: 'Max',
+      avatarUrl: '/img/avatar-max.jpg',
+      isPro: false,
+    },
+    images: ['/img/apartment-02.jpg', '/img/apartment-03.jpg'],
+    maxAdults: 2,
+  },
+  {
+    id: '5',
+    title: 'Предложение 5',
+    type: 'room',
+    price: 20,
+    previewImage: '/img/apartment-01.jpg',
+    city: {
+      name: 'Hamburg',
+      location: {
+        latitude: 53.550341,
+        longitude: 10.000654,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 53.538341,
+      longitude: 9.976654000000002,
+      zoom: 16,
+    },
+    isFavourite: true,
+    isPremium: false,
+    rating: 4.2,
+    description:
+      'Stylish room with a view on the river and the city center.',
+    bedrooms: 1,
+    goods: ['Breakfast', 'Air conditioning', 'Mini bar'],
+    host: {
+      name: 'Max',
+      avatarUrl: '/img/avatar-max.jpg',
+      isPro: false,
+    },
+    images: ['/img/apartment-02.jpg', '/img/apartment-03.jpg'],
+    maxAdults: 2,
+  },
+  {
+    id: '6',
+    title: 'Предложение 6',
+    type: 'room',
+    price: 20,
+    previewImage: '/img/apartment-01.jpg',
+    city: {
+      name: 'Dusseldorf',
+      location: {
+        latitude: 51.225402,
+        longitude: 6.776314,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 51.214402,
+      longitude: 6.764314000000001,
+      zoom: 16,
     },
     isFavourite: true,
     isPremium: false,

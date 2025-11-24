@@ -16,10 +16,10 @@ export function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
       )}
 
       <div className='cities__image-wrapper place-card__image-wrapper'>
-        <Link to={`/offer/${offer.id}`}>
+        <Link to={`${AppRoute.Offer}/${offer.id}`}>
           <img
             className='place-card__image'
-            src={offer.images[0]}
+            src={offer.previewImage}
             width='260'
             height='200'
             alt={offer.title}

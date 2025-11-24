@@ -18,7 +18,7 @@ export function FavoritesPlaceCard({ offer }: Props): JSX.Element {
         <a href='#'>
           <img
             className='place-card__image'
-            src={offer.images[0]}
+            src={offer.previewImage}
             width={150}
             height={110}
             alt='Place image'
