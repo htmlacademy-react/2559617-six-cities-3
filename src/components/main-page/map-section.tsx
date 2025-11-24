@@ -15,6 +15,15 @@ export function MapSection({ offers }: Props) {
 
   useEffect(() => {
     if (map) {
+      
+      map.setView([city.latitude, city.longitude], city.zoom);
+
+      map.eachLayer((layer) => {
+      if (layer instanceof leaflet.Marker) {
+        map.removeLayer(layer);
+      }
+    });
+
       offers.forEach((offer) => {
         leaflet
           .marker({
