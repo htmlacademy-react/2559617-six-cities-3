@@ -7,20 +7,14 @@ import { FavoritesPage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
 import { NotFoundPage } from '../../pages/not-found-page/not-found.page';
 import { PrivateRoute } from '../private-routers/private-route';
-import { TOffer } from '../../types/offers';
 
-type Props = {
-  offers: TOffer[];
-};
-
-
-export default function App({offers}:Props): JSX.Element {
+export default function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage offers={offers} />}
+          element={<MainPage />}
         /> *
         <Route
           path={AppRoute.Login}
@@ -32,13 +26,13 @@ export default function App({offers}:Props): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.Auth}
             >
-              <FavoritesPage offers={offers} />
+              <FavoritesPage />
             </PrivateRoute>
           }
         />
         <Route
           path={`${AppRoute.Offer}/:id`}
-          element={<OfferPage offers={offers} />}
+          element={<OfferPage />}
         />
         <Route
           path={'*'}

@@ -1,18 +1,17 @@
-import {createReducer} from '@reduxjs/toolkit';
-import {changeCity, loadOffers} from './action';
+import { createReducer } from '@reduxjs/toolkit';
+import { changeCity, loadOffers } from './action';
 import { TOffer } from '../types/offers';
 import { CITIES } from '../const';
-import { offers } from '../mocks/offers';
+import { offers as mockOffers } from '../mocks/offers';
 
-const OffersState {
-  city: CityName,
-  offers: offers[],
-};
+export interface OffersState {
+  city: string;
+  offers: TOffer[];
+}
 
-
-const initialState = {
+const initialState: OffersState = {
   city: CITIES[0].name,
-  offers: offers[],
+  offers: mockOffers,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -20,7 +19,6 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(changeCity, (state, action) => {
       state.city = action.payload;
     })
-
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
     });

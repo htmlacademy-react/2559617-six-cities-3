@@ -1,17 +1,16 @@
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 import { Header } from '../../components/header/header';
 import { OfferGallery } from '../../components/offer-page/offer-gallery/offer-gallery';
 import { OfferInfo } from '../../components/offer-page/offer-info/offer-info';
-import { TOffer } from '../../types/offers';
 import { NotFoundPage } from '../not-found-page/not-found.page';
 import { MapSection } from '../../components/main-page/map-section';
+import { NearPlaces } from '../../components/offer-page/near-places/near-places';
 
-type Props = {
-  offers: TOffer[];
-};
-
-export function OfferPage({ offers }: Props): JSX.Element {
+export function OfferPage(): JSX.Element {
   const { id } = useParams<{ id: string }>();
+  const offers = useSelector((state: RootState) => state.offers);
   const offer = offers.find((o) => o.id === id);
 
   if (!offer) {
@@ -26,7 +25,7 @@ export function OfferPage({ offers }: Props): JSX.Element {
           <OfferGallery />
           <OfferInfo offer={offer} />
           <MapSection offers={[offer]} />
-          {/* <NearPlaces /> */}
+          < NearPlaces/>
         </section>
       </main>
     </div>
