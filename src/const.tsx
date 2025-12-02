@@ -42,3 +42,23 @@ export const CITIES =[
     name: 'Dusseldorf'
   },
 ]
+
+export const FILTERS = [
+  {
+    id: 'popular',
+    name: 'Popular'
+  },
+  {
+    id: 'price-low-to-high',
+    name: 'Price: low to high'
+  },
+  {
+    id: 'price-high-to-low',
+    name: 'Price: high to low'
+  },
+  {
+    id: 'top-rated-first',
+    name: 'Top rated first'
+  },
+];
+

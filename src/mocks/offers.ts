@@ -205,4 +205,74 @@ export const offers: TOffer[] = [
     images: ['/img/apartment-02.jpg', '/img/apartment-03.jpg'],
     maxAdults: 2,
   },
+
+  {
+    id: '7',
+    title: 'Предложение 7',
+    type: 'room',
+    price: 200,
+    previewImage: '/img/apartment-01.jpg',
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 51.225402,
+        longitude: 6.776314,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 51.214402,
+      longitude: 6.764314000000001,
+      zoom: 16,
+    },
+    isFavourite: true,
+    isPremium: false,
+    rating: 2.2,
+    description:
+      'Stylish room with a view on the river and the city center.',
+    bedrooms: 1,
+    goods: ['Breakfast', 'Air conditioning', 'Mini bar'],
+    host: {
+      name: 'Max',
+      avatarUrl: '/img/avatar-max.jpg',
+      isPro: false,
+    },
+    images: ['/img/apartment-02.jpg', '/img/apartment-03.jpg'],
+    maxAdults: 2,
+  },
+
+  {
+    id: '8',
+    title: 'Предложение 8',
+    type: 'room',
+    price: 131,
+    previewImage: '/img/apartment-01.jpg',
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 51.225402,
+        longitude: 6.776314,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 51.214402,
+      longitude: 6.764314000000001,
+      zoom: 16,
+    },
+    isFavourite: true,
+    isPremium: false,
+    rating: 4.7,
+    description:
+      'Stylish room with a view on the river and the city center.',
+    bedrooms: 1,
+    goods: ['Breakfast', 'Air conditioning', 'Mini bar'],
+    host: {
+      name: 'Max',
+      avatarUrl: '/img/avatar-max.jpg',
+      isPro: false,
+    },
+    images: ['/img/apartment-02.jpg', '/img/apartment-03.jpg'],
+    maxAdults: 2,
+  },
 ];
