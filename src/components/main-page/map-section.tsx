@@ -13,11 +13,13 @@ type Props = {
 export function MapSection({ offers }: Props) {
   const mapRef = useRef(null);
   const city = offers[0].city.location;
-  const map = useMap(mapRef, city) as leaflet.Map | null;
+  const map = useMap(mapRef, city) ;
   const hoveredOfferId = useSelector((state: RootState) => state.hoveredOfferId);
 
   useEffect(() => {
-    if (!map) return;
+    if (!map){
+      return;
+    }
 
     map.setView([city.latitude, city.longitude], city.zoom);
 

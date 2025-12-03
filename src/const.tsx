@@ -16,7 +16,7 @@ export const URL_MARKER_DEFAULT = 'https://assets.htmlacademy.ru/content/intensi
 
 export const URL_MARKER_CURRENT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
 
-export const CITIES =[
+export const CITIES = [
   {
     id: 'paris',
     name: 'Paris'
@@ -41,7 +41,7 @@ export const CITIES =[
     id: 'dusseldorf',
     name: 'Dusseldorf'
   },
-]
+];
 
 export const FILTERS = [
   {
