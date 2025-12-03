@@ -2,7 +2,7 @@ import { PlaceCard } from './place-card';
 import { PlacesSorting } from './places-sorting';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
-import { changeSort } from '../../store/action';
+import { changeSort, setHoveredOffer  } from '../../store/action';
 
 export function PlacesList(): JSX.Element {
   const city = useSelector((state: RootState) => state.city);
@@ -35,7 +35,12 @@ export function PlacesList(): JSX.Element {
 
       <div className='cities__places-list places__list tabs__content'>
         {sortedOffers.map((offer) => (
-          <PlaceCard key={offer.id} offer={offer} />
+          <PlaceCard 
+          key={offer.id} 
+          offer={offer}
+          onMouseEnter={() => dispatch(setHoveredOffer(offer.id))}
+          onMouseLeave={() => dispatch(setHoveredOffer(null))}
+          />
         ))}
       </div>
     </section>

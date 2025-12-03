@@ -4,11 +4,18 @@ import { TOffer } from '../../types/offers';
 
 type PlaceCardProps = {
   offer: TOffer;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 };
 
-export function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
+export function PlaceCard({ offer, onMouseEnter, onMouseLeave }: PlaceCardProps): JSX.Element {
   return (
-    <article className='cities__card place-card'>
+    <article 
+      className='cities__card place-card'
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      >
+      
       {offer.isPremium && (
         <div className='place-card__mark'>
           <span>Premium</span>
