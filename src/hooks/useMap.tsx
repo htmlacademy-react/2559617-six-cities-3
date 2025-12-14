@@ -1,21 +1,22 @@
 import { useEffect, useState, useRef, RefObject } from 'react';
 import leaflet, { Map as LeafletMap } from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
-interface City {
+interface MapCenter {
   latitude: number;
   longitude: number;
   zoom: number;
 }
 
-function useMap(mapRef: RefObject<HTMLElement>, city: City): LeafletMap | null {
+function useMap(mapRef: RefObject<HTMLElement>, mapCenter: MapCenter): LeafletMap | null {
   const [map, setMap] = useState<LeafletMap | null>(null);
   const isRenderedRef = useRef(false);
 
   useEffect(() => {
     if (mapRef.current && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
-        center: [city.latitude, city.longitude],
-        zoom: city.zoom,
+        center: [mapCenter.latitude, mapCenter.longitude],
+        zoom: mapCenter.zoom,
       });
 
       leaflet
@@ -31,7 +32,7 @@ function useMap(mapRef: RefObject<HTMLElement>, city: City): LeafletMap | null {
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [city.latitude, city.longitude, city.zoom, mapRef.current]);
+  }, [mapCenter.latitude, mapCenter.longitude, mapCenter.zoom, mapRef]);
 
   return map;
 }

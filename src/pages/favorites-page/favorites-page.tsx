@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { Footer } from '../../components/footer/footer';
+import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/header';
 import { FavoritesPageEmpty } from '../../components/favorites/favorites-empty';
 import { FavoritesSection } from '../../components/favorites/favorites-section';

@@ -252,12 +252,12 @@ export const offers: TOffer[] = [
       location: {
         latitude: 51.225402,
         longitude: 6.776314,
-        zoom: 13,
+        zoom: 10,
       },
     },
     location: {
-      latitude: 51.214402,
-      longitude: 6.764314000000001,
+      latitude: 48.862891176371605,
+      longitude: 2.2948462039604762,
       zoom: 16,
     },
     isFavourite: true,
