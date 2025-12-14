@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { Header } from '../../components/header/header';
 import { OfferGallery } from '../../components/offer-page/offer-gallery/offer-gallery';
 import { OfferInfo } from '../../components/offer-page/offer-info/offer-info';
-import { NotFoundPage } from '../not-found-page/not-found.page';
 import { MapSection } from '../../components/main-page/map-section';
 import { NearPlaces } from '../../components/offer-page/near-places/near-places';
+import { NotFoundPage } from '../not-found-page/not-found.page';
+import { PageLayout } from '../../components/page-layout/PageLayout';
 
 export function OfferPage(): JSX.Element {
   const { id } = useParams<{ id: string }>();
@@ -18,16 +18,13 @@ export function OfferPage(): JSX.Element {
   }
 
   return (
-    <div className='page'>
-      <Header />
-      <main className='page__main page__main--offer'>
-        <section className='offer'>
-          <OfferGallery />
-          <OfferInfo offer={offer} />
-          <MapSection offers={[offer]} />
-          < NearPlaces/>
-        </section>
-      </main>
-    </div>
+    <PageLayout mainClassName="page__main page__main--offer">
+      <section className="offer">
+        <OfferGallery />
+        <OfferInfo offer={offer} />
+        <MapSection offers={[offer]} />
+        <NearPlaces />
+      </section>
+    </PageLayout>
   );
 }
