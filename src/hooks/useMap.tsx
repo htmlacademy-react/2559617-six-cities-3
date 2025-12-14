@@ -7,17 +7,14 @@ interface City {
   zoom: number;
 }
 
-function useMap(mapRef: RefObject<HTMLDivElement>, city: City): LeafletMap | null {
+function useMap(mapRef: RefObject<HTMLElement>, city: City): LeafletMap | null {
   const [map, setMap] = useState<LeafletMap | null>(null);
   const isRenderedRef = useRef(false);
 
   useEffect(() => {
     if (mapRef.current && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
-        center: {
-          lat: city.latitude,
-          lng: city.longitude,
-        },
+        center: [city.latitude, city.longitude],
         zoom: city.zoom,
       });
 
@@ -34,7 +31,7 @@ function useMap(mapRef: RefObject<HTMLDivElement>, city: City): LeafletMap | nul
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, city.latitude, city.longitude, city.zoom]);
+  }, [city.latitude, city.longitude, city.zoom, mapRef.current]);
 
   return map;
 }
