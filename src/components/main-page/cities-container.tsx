@@ -1,4 +1,4 @@
-import { PlacesList } from './places-list';
+import { OfferList} from './OfferList';
 import { MapSection } from './map-section';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
@@ -12,7 +12,7 @@ export function CitiesContainer(): JSX.Element {
   return (
     <div className='cities'>
       <div className='cities__places-container container'>
-        <PlacesList/>
+        <OfferList/>
         <div className="cities__right-section">
           <MapSection offers={filteredOffers} />
         </div>

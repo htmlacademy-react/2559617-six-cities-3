@@ -14,7 +14,7 @@ export interface OffersState {
 const initialState: OffersState = {
   city: CITIES[0].name,
   offers: mockOffers,
-  sortType: 'Popular',
+  sortType: 'popular',
   hoveredOfferId: null,
 };
 
@@ -28,6 +28,19 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeSort, (state, action) => {
       state.sortType = action.payload;
+
+      state.offers = [...state.offers].sort((a, b) => {
+        switch (state.sortType) {
+          case 'price-low-to-high':
+            return a.price - b.price;
+          case 'price-high-to-low':
+            return b.price - a.price;
+          case 'top-rated-first':
+            return b.rating - a.rating;
+          default:
+            return 0;
+        }
+      });
     })
     .addCase(setHoveredOffer, (state, action) => {
       state.hoveredOfferId = action.payload;

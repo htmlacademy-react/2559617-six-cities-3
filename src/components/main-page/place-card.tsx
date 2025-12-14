@@ -1,21 +1,30 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { TOffer } from '../../types/offers';
+import { useDispatch } from 'react-redux';
+import { setHoveredOffer } from '../../store/action';
 
 type PlaceCardProps = {
   offer: TOffer;
-  onMouseEnter?: () => void;
-  onMouseLeave?: () => void;
 };
 
-export function PlaceCard({ offer, onMouseEnter, onMouseLeave }: PlaceCardProps): JSX.Element {
+export function PlaceCard({ offer }: PlaceCardProps): JSX.Element {
+  const dispatch = useDispatch();
+
+  const handleMouseEnter = () => {
+    dispatch(setHoveredOffer(offer.id));
+  };
+
+  const handleMouseLeave = () => {
+    dispatch(setHoveredOffer(null));
+  };
+
   return (
     <article
       className='cities__card place-card'
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-
       {offer.isPremium && (
         <div className='place-card__mark'>
           <span>Premium</span>
