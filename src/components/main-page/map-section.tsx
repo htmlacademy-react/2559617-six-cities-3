@@ -18,7 +18,6 @@ export function MapSection({ offers }: Props) {
   const hoveredOfferId = useSelector((state: RootState) => state.hoveredOfferId);
 
   const hoveredOffer = offers.find((offer) => offer.id === hoveredOfferId);
-  
   const mapCenter = hoveredOffer
     ? hoveredOffer.location
     : CITY_CENTERS[activeCityName] ?? offers[0].city.location;
@@ -27,7 +26,9 @@ export function MapSection({ offers }: Props) {
   const markersRef = useRef<leaflet.Marker[]>([]);
 
   useEffect(() => {
-    if (!map) return;
+    if (!map) {
+      return;
+    }
 
     map.setView([mapCenter.latitude, mapCenter.longitude], mapCenter.zoom);
 

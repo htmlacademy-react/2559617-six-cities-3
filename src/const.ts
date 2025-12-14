@@ -1,4 +1,4 @@
-import { TLocationCoordinates } from "./types/offers";
+import { TLocationCoordinates } from './types/offers';
 
 export enum AppRoute {
     Main = '/',
