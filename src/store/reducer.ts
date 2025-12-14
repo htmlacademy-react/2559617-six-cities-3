@@ -29,18 +29,20 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(changeSort, (state, action) => {
       state.sortType = action.payload;
 
-      state.offers = [...state.offers].sort((a, b) => {
-        switch (state.sortType) {
-          case 'price-low-to-high':
-            return a.price - b.price;
-          case 'price-high-to-low':
-            return b.price - a.price;
-          case 'top-rated-first':
-            return b.rating - a.rating;
-          default:
-            return 0;
-        }
-      });
+      switch (state.sortType) {
+        case 'price-low-to-high':
+          state.offers = [...state.offers].sort((a, b) => a.price - b.price);
+          break;
+        case 'price-high-to-low':
+          state.offers = [...state.offers].sort((a, b) => b.price - a.price);
+          break;
+        case 'top-rated-first':
+          state.offers = [...state.offers].sort((a, b) => b.rating - a.rating);
+          break;
+        case 'popular':
+        default:
+          state.offers = [...mockOffers];
+      }
     })
     .addCase(setHoveredOffer, (state, action) => {
       state.hoveredOfferId = action.payload;
