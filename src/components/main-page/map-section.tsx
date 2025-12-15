@@ -13,14 +13,12 @@ type Props = {
 
 export function MapSection({ offers }: Props) {
   const mapRef = useRef<HTMLElement | null>(null);
-
-  const activeCityName = offers[0].city.name;
   const hoveredOfferId = useSelector((state: RootState) => state.hoveredOfferId);
+  const cityName = useSelector((state: RootState) => state.city);
 
-  const hoveredOffer = offers.find((offer) => offer.id === hoveredOfferId);
-  const mapCenter = hoveredOffer
-    ? hoveredOffer.location
-    : CITY_CENTERS[activeCityName] ?? offers[0].city.location;
+  const mapCenter = offers.length > 0
+    ? offers[0].city.location
+    : CITY_CENTERS[cityName];
 
   const map = useMap(mapRef, mapCenter);
   const markersRef = useRef<leaflet.Marker[]>([]);
@@ -35,17 +33,15 @@ export function MapSection({ offers }: Props) {
     markersRef.current.forEach((marker) => marker.remove());
     markersRef.current = [];
 
-    markersRef.current = offers.map((offer) => {
-      const iconUrl = offer.id === hoveredOfferId
-        ? '/img/pin-active.svg'
-        : '/img/pin.svg';
+    offers.forEach((offer) => {
+      const iconUrl = offer.id === hoveredOfferId ? '/img/pin-active.svg' : '/img/pin.svg';
       const marker = leaflet.marker([offer.location.latitude, offer.location.longitude], {
-        icon: leaflet.icon({ iconUrl, iconSize: [27, 39] }),
+        icon: leaflet.icon({ iconUrl, iconSize: [27, 39] })
       });
       marker.addTo(map);
-      return marker;
+      markersRef.current.push(marker);
     });
-  }, [map, offers, mapCenter, hoveredOfferId]);
+  }, [map, offers, hoveredOfferId, mapCenter]);
 
   return (
     <section
