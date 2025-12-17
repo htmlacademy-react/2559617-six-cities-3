@@ -1,8 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, changeSort, setHoveredOffer } from './action';
+import { changeCity, changeSort, setHoveredOffer, setAuthorizationStatus } from './action';
 import { fetchOffers } from './api-actions';
 import { TOffer } from '../types/offers';
-import { CITIES } from '../const';
+import { CITIES, AuthorizationStatus } from '../const';
 
 export interface OffersState {
   city: string;
@@ -10,6 +10,7 @@ export interface OffersState {
   sortType: string;
   hoveredOfferId: string | null;
   isOffersLoading: boolean;
+  authorizationStatus: AuthorizationStatus;
 }
 
 const initialState: OffersState = {
@@ -18,6 +19,7 @@ const initialState: OffersState = {
   sortType: 'popular',
   hoveredOfferId: null,
   isOffersLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -43,5 +45,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchOffers.rejected, (state) => {
       state.isOffersLoading = false;
+    })
+    .addCase(setAuthorizationStatus, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
