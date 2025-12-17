@@ -9,12 +9,6 @@ export type TCity = {
     location: TLocationCoordinates;
 }
 
-export type THost = {
-    name: string;
-    avatarUrl: string;
-    isPro: boolean;
-}
-
 export type TOffer = {
     id: string;
     title: string;
@@ -23,13 +17,17 @@ export type TOffer = {
     previewImage: string;
     city: TCity;
     location: TLocationCoordinates;
-    isFavourite: boolean;
+    isFavorite: boolean;
     isPremium: boolean;
     rating: number;
     description: string;
     bedrooms: number;
     goods: string[];
-    host: THost;
+    host: {
+      name: string;
+      avatarUrl: string;
+      isPro: boolean;
+    };
     images: string [];
     maxAdults: number;
 }
