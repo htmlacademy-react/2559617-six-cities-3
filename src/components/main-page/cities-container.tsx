@@ -1,21 +1,18 @@
+import { OfferList} from './OfferList';
 import { MapSection } from './map-section';
-import { PlacesList } from './places-list';
-import { TOffer } from '../../types/offers';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
-type Props = {
-  offers: TOffer[];
-  selectedCity: string;
-};
+export function CitiesContainer(): JSX.Element {
+  const city = useSelector((state: RootState) => state.city);
+  const offers = useSelector((state: RootState) => state.offers);
 
-export function CitiesContainer({ offers, selectedCity }: Props): JSX.Element {
-  const filteredOffers = offers.filter(
-    (offer) => offer.city.name === selectedCity
-  );
+  const filteredOffers = offers.filter((offer) => offer.city.name === city);
 
   return (
     <div className='cities'>
       <div className='cities__places-container container'>
-        <PlacesList offers={filteredOffers} cityName={selectedCity} />
+        <OfferList/>
         <div className="cities__right-section">
           <MapSection offers={filteredOffers} />
         </div>
@@ -23,4 +20,3 @@ export function CitiesContainer({ offers, selectedCity }: Props): JSX.Element {
     </div>
   );
 }
-

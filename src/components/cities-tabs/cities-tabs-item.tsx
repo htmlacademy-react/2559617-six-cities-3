@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 type Props = {
   cityName: string;
   isActive: boolean;
@@ -7,16 +9,16 @@ type Props = {
 export function CitiesTabsItem({ cityName, isActive, onCityChange }: Props) {
   return (
     <li className="locations__item">
-      <a
+      <Link
         className={`locations__item-link tabs__item ${isActive ? 'tabs__item--active' : ''}`}
-        href="#"
+        to="#"
         onClick={(evt) => {
           evt.preventDefault();
           onCityChange(cityName);
         }}
       >
         <span>{cityName}</span>
-      </a>
+      </Link>
     </li>
   );
 }

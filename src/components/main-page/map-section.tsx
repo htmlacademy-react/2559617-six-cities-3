@@ -3,37 +3,45 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/useMap';
 import { TOffer } from '../../types/offers';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { CITY_CENTERS } from '../../const';
 
 type Props = {
   offers: TOffer[];
 };
 
 export function MapSection({ offers }: Props) {
-  const mapRef = useRef(null);
-  const city = offers[0].city.location;
-  const map = useMap(mapRef, city);
+  const mapRef = useRef<HTMLElement | null>(null);
+  const hoveredOfferId = useSelector((state: RootState) => state.hoveredOfferId);
+  const cityName = useSelector((state: RootState) => state.city);
+
+  const mapCenter = offers.length > 0
+    ? offers[0].city.location
+    : CITY_CENTERS[cityName];
+
+  const map = useMap(mapRef, mapCenter);
+  const markersRef = useRef<leaflet.Marker[]>([]);
 
   useEffect(() => {
-    if (map) {
-      
-      map.setView([city.latitude, city.longitude], city.zoom);
-
-      map.eachLayer((layer) => {
-      if (layer instanceof leaflet.Marker) {
-        map.removeLayer(layer);
-      }
-    });
-
-      offers.forEach((offer) => {
-        leaflet
-          .marker({
-            lat: offer.location.latitude,
-            lng: offer.location.longitude,
-          })
-          .addTo(map);
-      });
+    if (!map) {
+      return;
     }
-  }, [map, offers]);
+
+    map.setView([mapCenter.latitude, mapCenter.longitude], mapCenter.zoom);
+
+    markersRef.current.forEach((marker) => marker.remove());
+    markersRef.current = [];
+
+    offers.forEach((offer) => {
+      const iconUrl = offer.id === hoveredOfferId ? '/img/pin-active.svg' : '/img/pin.svg';
+      const marker = leaflet.marker([offer.location.latitude, offer.location.longitude], {
+        icon: leaflet.icon({ iconUrl, iconSize: [27, 39] })
+      });
+      marker.addTo(map);
+      markersRef.current.push(marker);
+    });
+  }, [map, offers, hoveredOfferId, mapCenter]);
 
   return (
     <section

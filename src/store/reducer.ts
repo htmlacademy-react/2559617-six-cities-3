@@ -1,18 +1,23 @@
-import {createReducer} from '@reduxjs/toolkit';
-import {changeCity, loadOffers} from './action';
+import { createReducer } from '@reduxjs/toolkit';
+import { changeCity, changeSort, setHoveredOffer } from './action';
+import { fetchOffers } from './api-actions';
 import { TOffer } from '../types/offers';
 import { CITIES } from '../const';
-import { offers } from '../mocks/offers';
 
-const OffersState {
-  city: CityName,
-  offers: offers[],
-};
+export interface OffersState {
+  city: string;
+  offers: TOffer[];
+  sortType: string;
+  hoveredOfferId: string | null;
+  isOffersLoading: boolean;
+}
 
-
-const initialState = {
+const initialState: OffersState = {
   city: CITIES[0].name,
-  offers: offers[],
+  offers: [],
+  sortType: 'popular',
+  hoveredOfferId: null,
+  isOffersLoading: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -21,7 +26,22 @@ export const reducer = createReducer(initialState, (builder) => {
       state.city = action.payload;
     })
 
-    .addCase(loadOffers, (state, action) => {
+    .addCase(changeSort, (state, action) => {
+      state.sortType = action.payload;
+    })
+
+    .addCase(setHoveredOffer, (state, action) => {
+      state.hoveredOfferId = action.payload;
+    })
+
+    .addCase(fetchOffers.pending, (state) => {
+      state.isOffersLoading = true;
+    })
+    .addCase(fetchOffers.fulfilled, (state, action) => {
       state.offers = action.payload;
+      state.isOffersLoading = false;
+    })
+    .addCase(fetchOffers.rejected, (state) => {
+      state.isOffersLoading = false;
     });
 });

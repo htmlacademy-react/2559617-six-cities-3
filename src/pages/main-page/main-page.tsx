@@ -1,29 +1,37 @@
-import { useState } from 'react';
-import { Header } from '../../components/header/header';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../../store/store';
+import { changeCity } from '../../store/action';
+import { fetchOffers } from '../../store/api-actions';
 import { CitiesTabsList } from '../../components/cities-tabs/cities-tabs-list';
 import { CitiesContainer } from '../../components/main-page/cities-container';
-import { TOffer } from '../../types/offers';
+import { PageLayout } from '../../components/page-layout/PageLayout';
+import { Spinner } from '../../components/spinner/Spinner';
 
-type Props = {
-  offers: TOffer[];
-};
+export function MainPage(): JSX.Element {
+  const dispatch: AppDispatch = useDispatch();
+  const city = useSelector((state: RootState) => state.city);
+  const isOffersLoading = useSelector((state: RootState) => state.isOffersLoading);
 
-export function MainPage({offers}: Props): JSX.Element {
-  const [activeCity, setActiveCity] = useState('Paris');
+  useEffect(() => {
+    dispatch(fetchOffers());
+  }, [dispatch]);
 
-  const handleCityChange = (city: string) => {
-    setActiveCity(city);
-  };
-
-  const filteredOffers = offers.filter((offer) => offer.city.name === activeCity);
+  if (isOffersLoading) {
+    return <Spinner />;
+  }
 
   return (
-    <div className='page page--gray page--main'>
-      <Header showNavigation />
-      <main className='page__main page__main--index'>
-        <CitiesTabsList selectedCity={activeCity} onCityChange={handleCityChange} />
-        <CitiesContainer offers={filteredOffers} selectedCity={activeCity} />
-      </main>
-    </div>
+    <PageLayout
+      pageClassName="page page--gray page--main"
+      mainClassName="page__main page__main--index"
+      showHeaderNavigation
+    >
+      <CitiesTabsList
+        selectedCity={city}
+        onCityChange={(newCity) => dispatch(changeCity(newCity))}
+      />
+      <CitiesContainer />
+    </PageLayout>
   );
 }
