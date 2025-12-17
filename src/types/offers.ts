@@ -31,3 +31,41 @@ export type TOffer = {
     images: string [];
     maxAdults: number;
 }
+// это будет отдельный тип для офферов по близости
+export type TNearbyOffer = {
+  id: string;
+  title: string;
+  type: 'apartment' | 'room';
+  price: number;
+  city: {
+    name: string;
+    location: {
+      latitude: number;
+      longitude: number;
+      zoom: number;
+    };
+  };
+  location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+  };
+  isFavorite?: boolean;
+  isPremium: boolean;
+  rating: number;
+  previewImage: string;
+};
+// это будет отдельный тип для комментарией потом
+export type TCommentUser = {
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+};
+
+export type TComment = {
+  id: string;
+  date: string;
+  user: TCommentUser;
+  comment: string;
+  rating: number;
+};

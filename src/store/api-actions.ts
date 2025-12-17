@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
-import { TOffer } from '../types/offers';
+import { TOffer, TNearbyOffer, TComment } from '../types/offers';
 import { RootState } from './store';
 import { setAuthorizationStatus } from './action';
 import { AuthorizationStatus } from '../const';
@@ -65,6 +65,18 @@ export const fetchOfferById = createAsyncThunk<
   'offer/fetchById',
   async (offerId, { extra: api }) => {
     const { data } = await api.get<TOffer>(`/offers/${offerId}`);
+    return data;
+  }
+);
+
+export const fetchNearbyOffers = createAsyncThunk<
+  TNearbyOffer[],
+  string,
+  ThunkApiConfig
+>(
+  'offers/fetchNearbyOffers',
+  async (offerId, { extra: api }) => {
+    const { data } = await api.get<TNearbyOffer[]>(`/offers/${offerId}/nearby`);
     return data;
   }
 );
