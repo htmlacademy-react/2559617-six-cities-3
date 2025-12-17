@@ -56,3 +56,15 @@ export const login = createAsyncThunk<
     dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
   }
 );
+
+export const fetchOfferById = createAsyncThunk<
+  TOffer,
+  string,
+  ThunkApiConfig
+>(
+  'offer/fetchById',
+  async (offerId, { extra: api }) => {
+    const { data } = await api.get<TOffer>(`/offers/${offerId}`);
+    return data;
+  }
+);

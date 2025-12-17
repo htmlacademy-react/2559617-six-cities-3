@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeCity, changeSort, setHoveredOffer, setAuthorizationStatus } from './action';
-import { fetchOffers } from './api-actions';
+import { fetchOffers, fetchOfferById } from './api-actions';
 import { TOffer } from '../types/offers';
 import { CITIES, AuthorizationStatus } from '../const';
 
@@ -11,6 +11,8 @@ export interface OffersState {
   hoveredOfferId: string | null;
   isOffersLoading: boolean;
   authorizationStatus: AuthorizationStatus;
+  currentOffer: TOffer | null;
+  isCurrentOfferLoading: boolean;
 }
 
 const initialState: OffersState = {
@@ -20,6 +22,8 @@ const initialState: OffersState = {
   hoveredOfferId: null,
   isOffersLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
+  currentOffer: null,
+  isCurrentOfferLoading: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -48,5 +52,17 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setAuthorizationStatus, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(fetchOfferById.pending, (state) => {
+    state.isCurrentOfferLoading = true;
+    state.currentOffer = null;
+    })
+    .addCase(fetchOfferById.fulfilled, (state, action) => {
+      state.currentOffer = action.payload;
+      state.isCurrentOfferLoading = false;
+    })
+    .addCase(fetchOfferById.rejected, (state) => {
+      state.isCurrentOfferLoading = false;
+      state.currentOffer = null;
     });
 });
