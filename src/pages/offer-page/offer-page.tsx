@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../store/store';
-import { fetchOfferById } from '../../store/api-actions';
+import { fetchOfferById, fetchCommentsByOfferId, fetchNearbyOffers } from '../../store/api-actions';
 import { PageLayout } from '../../components/page-layout/PageLayout';
 import { OfferGallery } from '../../components/offer-page/offer-gallery/offer-gallery';
 import { OfferInfo } from '../../components/offer-page/offer-info/offer-info';
@@ -21,6 +21,8 @@ export function OfferPage(): JSX.Element {
   useEffect(() => {
     if (id) {
       dispatch(fetchOfferById(id));
+      dispatch(fetchNearbyOffers(id));
+      dispatch(fetchCommentsByOfferId(id));
     }
   }, [id, dispatch]);
 

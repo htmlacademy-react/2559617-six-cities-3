@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeCity, changeSort, setHoveredOffer, setAuthorizationStatus } from './action';
-import { fetchOffers, fetchOfferById, fetchNearbyOffers } from './api-actions';
+import { fetchOffers, fetchOfferById, fetchNearbyOffers, fetchCommentsByOfferId } from './api-actions';
 import { TOffer, TNearbyOffer, TComment } from '../types/offers';
 import { CITIES, AuthorizationStatus } from '../const';
 
@@ -84,5 +84,17 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(fetchNearbyOffers.rejected, (state) => {
       state.isNearbyOffersLoading = false;
       state.currentNearbyOffers = [];
+    })
+    .addCase(fetchCommentsByOfferId.pending, (state) => {
+    state.isCommentsLoading = true;
+    state.currentComments = [];
+    })
+    .addCase(fetchCommentsByOfferId.fulfilled, (state, action) => {
+      state.currentComments = action.payload;
+      state.isCommentsLoading = false;
+    })
+    .addCase(fetchCommentsByOfferId.rejected, (state) => {
+      state.isCommentsLoading = false;
+      state.currentComments = [];
     });
 });
