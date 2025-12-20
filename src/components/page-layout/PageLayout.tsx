@@ -1,9 +1,8 @@
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
 
 type PageLayoutProps = {
-  children: ReactNode;
   pageClassName?: string;
   mainClassName?: string;
   showHeaderNavigation?: boolean;
@@ -16,7 +15,7 @@ export function PageLayout({
   mainClassName = 'page__main',
   showHeaderNavigation = true,
   showFooter = false,
-}: PageLayoutProps): JSX.Element {
+}: PropsWithChildren<PageLayoutProps>): JSX.Element {
   return (
     <div className={pageClassName}>
       <Header showNavigation={showHeaderNavigation} />
