@@ -6,11 +6,17 @@ import { OfferReviewForm } from './offer-review-form/offer-review-form';
 import { OfferReviewsList } from './offer-reviews-list/offer-reviews-list';
 
 export function OfferReviews() {
-  const {
-    currentComments,
-    isCommentsLoading,
-    authorizationStatus,
-  } = useSelector((state: RootState) => state);
+  const currentComments = useSelector(
+    (state: RootState) => state.currentComments
+  );
+
+  const isCommentsLoading = useSelector(
+    (state: RootState) => state.isCommentsLoading
+  );
+
+  const authorizationStatus = useSelector(
+    (state: RootState) => state.authorizationStatus
+  );
 
   if (isCommentsLoading) {
     return <p>Loading reviews...</p>;
@@ -24,7 +30,7 @@ export function OfferReviews() {
         Reviews · <span className="reviews__amount">{currentComments.length}</span>
       </h2>
 
-      <OfferReviewsList comments={currentComments} />
+      <OfferReviewsList comments={currentComments.slice(0, 10)} />
 
       {isAuth && <OfferReviewForm />}
     </section>

@@ -1,9 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import { setHoveredOffer } from '../../store/action';
 import { toggleFavorite } from '../../store/api-actions/favorites';
-import { useState } from 'react';
 import { TOffer } from '../../types/offers';
 
 type PlaceCardProps = {
@@ -12,8 +11,9 @@ type PlaceCardProps = {
 
 export function MainOfferCard({ offer }: PlaceCardProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const currentUser = useSelector((state: RootState) => state.currentUser);
-  const [isFavorite, setIsFavorite] = useState(offer.isFavorite);
+  const isFavorite = offer.isFavorite;
 
   const handleMouseEnter = () => {
     dispatch(setHoveredOffer(offer.id));
@@ -25,12 +25,11 @@ export function MainOfferCard({ offer }: PlaceCardProps): JSX.Element {
 
   const handleBookmarkClick = () => {
     if (!currentUser) {
-      window.location.href = '/login';
+      navigate('/login');
       return;
     }
 
     dispatch(toggleFavorite({ offerId: offer.id, isFavorite }));
-    setIsFavorite((prev) => !prev);
   };
 
   return (
